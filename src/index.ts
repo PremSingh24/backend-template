@@ -4,12 +4,11 @@ import { connectDB } from "./database";
 import { Request, Response } from "express";
 
 const app = express();
-
 app.use(express.json());
 
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN, // Allowing Requests from Specific Hosts
+    origin: process.env.CORS_ORIGIN,
     credentials: true,
   })
 );
@@ -33,8 +32,8 @@ import authRouter from "./routes/auth.routes";
 
 //routes for user auth
 app.use("/api/v1/auth", authRouter);
-//Other Routes
 
+//Other Routes
 app.use("/*", (req: Request, res: Response) => {
   res.status(404).json({ message: "Invalid Route" });
 });
